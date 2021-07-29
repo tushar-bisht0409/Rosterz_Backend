@@ -18,6 +18,10 @@ const teamSchema = new Schema({
         type: String,
         require: false,
     }],
+    gPay: {
+        type: String,
+        require: false
+    },
 });
 
 module.exports = mongoose.model("teams", teamSchema);

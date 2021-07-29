@@ -1,8 +1,8 @@
 
 const Match = require("../models/match");
 const Team = require("../models/team");
+const Result = require("../models/result");
 const mongoose = require("mongoose");
-const team = require("../models/team");
 
 var functions = {
     postMatch: function(req,res){
@@ -10,6 +10,7 @@ var functions = {
             matchinfo = new Match({
                 matchID: obj.matchID,
                 organzier: obj.organizer,
+                userID: obj.userID,
                 map: obj.map,
                 maxPlayers: obj.maxPlayers,
                 minPlayers: obj.minPlayers,
@@ -19,7 +20,9 @@ var functions = {
                 game: obj.game,
                 matchType: obj.matchType,
                 status: "open",
-                matchLink: obj.matchLink
+                matchLink: obj.matchLink,
+                entryFee: obj.entryFee,
+                poolPrize: obj.poolPrize
             });
             matchinfo.save(function(err, match){
                 if(err){
@@ -59,23 +62,6 @@ var functions = {
     else if(obj.getBy === "matchID"){
         Match.find({
             matchID: obj.matchID
-        }, function(err,matches){
-            if(err) throw err;
-                if(!matches){
-                    return res.send({success: false, msz:"No Match Found"});                  
-                }
-                else{
-                    if(matches.length === 0){
-                        return res.send({success: false, msz:"No Match Found"});
-                    }
-                    else{
-                        return res.send({success: true, msz: matches}); 
-                }}
-        });
-    }
-    else if(obj.getBy === "matchType"){
-        Match.find({
-            matchType: obj.matchType
         }, function(err,matches){
             if(err) throw err;
                 if(!matches){
@@ -190,7 +176,7 @@ var functions = {
                                     matchID: obj.matchID,
                                     teamName: obj.teamName,
                                     players: [obj.players],
-                                    
+                                    gPay: obj.gPay
                                 });
                                 teaminfo.save(function(err, team){
                                     if(err){
@@ -279,6 +265,52 @@ var functions = {
                 }}
         });
     },
+    postResult: function(req,res){
+        var obj = req.body
+            rsultinfo = new Result({
+                matchID: obj.matchID,
+                organzier: obj.organizer,
+                game: obj.game,
+                matchType: obj.matchType,
+                poolPrize: obj.poolPrize,
+                teamResult: obj.teamResult
+            });
+            rsultinfo.save(function(err, result){
+                if(err){
+                    return res.json({
+                        success: false,
+                        msz: "Failed to Save",
+                        res: obj,
+                        errs: err
+                    });
+                }
+                else{
+                    return res.json({
+                        success: true,
+                        msz: "Successfully Saved"
+                    });
+                }
+            });
+        
+    },
+    getResult: function(req,res){
+        var obj = req.query;
+        Result.find({
+            matchID: obj.matchID
+        }, function(err,results){
+            if(err) throw err;
+                if(!results){
+                    return res.send({success: false, msz:"No Result Found"});                  
+                }
+                else{
+                    if(results.length === 0){
+                        return res.send({success: false, msz:"No Result Found"});
+                    }
+                    else{
+                        return res.send({success: true, msz: results}); 
+                }}
+        });
+}
     
 }
 

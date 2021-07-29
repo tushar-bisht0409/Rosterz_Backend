@@ -10,6 +10,10 @@ const matchSchema = new Schema({
         type: String,
         require: false
     },
+    userID: {
+        type: String,
+        require: false
+    },
     map: {
         type: String,
         require: false
@@ -58,6 +62,14 @@ const matchSchema = new Schema({
         type: String,
         require: false,
     }],
+    entryFee: {
+        type: String,
+        require: false
+    },
+    poolPrize: {
+        type: String,
+        require: false
+    },
 });
 
 module.exports = mongoose.model("matches", matchSchema);

@@ -16,6 +16,12 @@ router.post('/hostmatch', matchactions.postMatch);
 //POST / Register Team
 router.post('/registerteam', matchactions.postTeam);
 
+//POST / Post Result
+router.post('/postresult', matchactions.postResult);
+
+//GET / Get Result
+router.get('/getresult', matchactions.getResult);
+
 //GET / Get Matches
 router.get('/getmatch', matchactions.getMatch);
 
