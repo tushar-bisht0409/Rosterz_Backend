@@ -57,7 +57,8 @@ var functions = {
                         var token = jwt.encode(user, config.secret);
                         res.json({
                             success: true,
-                            token: token
+                            token: token,
+                            userID: user._id
                         });     
                     }
                     else{
@@ -70,20 +71,6 @@ var functions = {
             }
         });
     },
-    getID: function(req,res){
-        if(req.headers.authorization && req.headers.authorization.split(" ")[0] == "Bearer"){
-            var token = req.headers.authorization.split(" ")[1];
-            var decodedtoken = jwt.decode(token, config.secret);
-            return res.json({
-                success: true,
-                userID: decodedtoken._id
-            });
-        }
-        else{
-            return res.json({success: false,
-                 msz: "Not Obtained"});
-        }
-    }
 };
 
 module.exports = functions;

@@ -310,6 +310,24 @@ var functions = {
                         return res.send({success: true, msz: results}); 
                 }}
         });
+},
+getUserMatch: function(req,res){
+    var obj = req.query;
+    Match.find({
+        matchID: {$in: obj.matchIDs}
+    }, function(err,matches){
+        if(err) throw err;
+            if(!matches){
+                return res.send({success: false, msz:"No Match Found",md: obj.matchIDs});                  
+            }
+            else{
+                if(matches.length === 0){
+                    return res.send({success: false, msz:"No Match Found",md: obj.matchIDs});
+                }
+                else{
+                    return res.send({success: true, msz: matches}); 
+            }}
+    });
 }
     
 }
