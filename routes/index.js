@@ -4,7 +4,7 @@ const actions = require("../methods/actions");
 const matchactions =  require("../methods/matchactions");
 const payactions = require("../methods/payactions");
 const userinfoactions = require("../methods/userinfoactions");
-const notification = require("../methods/notificationactions");
+const notificationactions = require("../methods/notificationactions");
 const router = express.Router();
 
 // POST / Adding New User
@@ -26,7 +26,7 @@ router.post('/registerteam', matchactions.postTeam);
 router.post('/postresult', matchactions.postResult);
 
 //POST /Send Notification
-router.post('/sendnotification',notification.sendNotification);
+router.post('/sendnotification',notificationactions.sendNotification);
 
 //POST /Updating user match information
 router.post('/usermatch', userinfoactions.joinhost);
@@ -42,6 +42,9 @@ router.get('/payus', payactions.postAcceptPayment);
 
 //GET / Get Result
 router.get('/getresult', matchactions.getResult);
+
+//GET / Get Result
+router.get('/getnotification', notificationactions.getNotification);
 
 //GET / Get User Matches
 router.get('/getusermatch', matchactions.getUserMatch);
