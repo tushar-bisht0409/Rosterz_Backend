@@ -2,7 +2,7 @@
 const express = require("express");
 const actions = require("../methods/actions");
 const matchactions =  require("../methods/matchactions");
-const payactions = require("../methods/payactions");
+//const payactions = require("../methods/payactions");
 const userinfoactions = require("../methods/userinfoactions");
 const notificationactions = require("../methods/notificationactions");
 const router = express.Router();
@@ -37,8 +37,8 @@ router.post('/updatefcmtoken',userinfoactions.updateFcmToken);
 //GET / Getting User Information
 router.get('/getuser', userinfoactions.getUserInfo);
 
-//GET / Getting User Payment
-router.get('/payus', payactions.postAcceptPayment);
+// //GET / Getting User Payment
+// router.get('/payus', payactions.postAcceptPayment);
 
 //GET / Get Result
 router.get('/getresult', matchactions.getResult);
