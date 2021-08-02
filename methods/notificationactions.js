@@ -1,6 +1,6 @@
 const Notification = require("../models/notification");
 var fcm = require('fcm-notification');
-var FCM = new fcm("/Users/flash/Desktop/Tushar/rosterz-backend/config/fcm_private_key.json");
+var FCM = new fcm("fcm_private_key.json");
 
 
 var functions = {
