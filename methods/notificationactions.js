@@ -9,7 +9,7 @@ var functions = {
         var tokens = obj.tokens;
         notiinfo = new Notification({
           matchID: obj.matchID,
-          organzier: obj.organizer,
+          organizer: obj.organizer,
           game: obj.game,
           title: obj.title,
           body: obj.body,
@@ -59,8 +59,9 @@ var functions = {
                     else{
                         return res.send({success: true, msz: notifications}); 
                 }}
-        });
-    }
+        }).sort({"timeStamp": -1});
+    },
+    
 }
 
 module.exports = functions;
