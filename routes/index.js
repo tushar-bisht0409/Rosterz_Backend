@@ -37,6 +37,9 @@ router.post('/updatefcmtoken',userinfoactions.updateFcmToken);
 //GET / Getting User Information
 router.get('/getuser', userinfoactions.getUserInfo);
 
+//GET / Getting Fcm Token List
+router.get('/fcmtokenlist', userinfoactions.getFcmTokenList);
+
 // //GET / Getting User Payment
 // router.get('/payus', payactions.postAcceptPayment);
 

@@ -112,6 +112,28 @@ var functions = {
             }
         });
     }
+    },
+    getFcmTokenList: function(req,res){
+        var obj = req.query;
+        UserInfo.find({
+            userID: {$in: obj.userIDs}
+        }, function(err,userinfo){
+            if(err) throw err;
+                if(!userinfo){
+                    return res.send({success: false, msz:"No UserInfo Found"});                  
+                }
+                else{
+                    if(userinfo.length === 0){
+                        return res.send({success: false, msz:"No UserInfo Found"});
+                    }
+                    else{
+                        var tokenArr = new Array();
+                        for(let i = 0; i<userinfo.length;i++){ 
+                            tokenArr.push(userinfo[i]['fcmToken']);
+                        }
+                        return res.send({success: true, msz: tokenArr}); 
+                }}
+        });
     }
     
 }
