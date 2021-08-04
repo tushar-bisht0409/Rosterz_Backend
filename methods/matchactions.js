@@ -9,7 +9,7 @@ var functions = {
         var obj = req.body
             matchinfo = new Match({
                 matchID: obj.matchID,
-                organzier: obj.organizer,
+                organizer: obj.organizer,
                 userID: obj.userID,
                 map: obj.map,
                 maxPlayers: obj.maxPlayers,
