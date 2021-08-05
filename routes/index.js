@@ -2,6 +2,7 @@
 const express = require("express");
 const actions = require("../methods/actions");
 const matchactions =  require("../methods/matchactions");
+const feedbackactions = require("../methods/feedbackactions")
 //const payactions = require("../methods/payactions");
 const userinfoactions = require("../methods/userinfoactions");
 const notificationactions = require("../methods/notificationactions");
@@ -27,6 +28,9 @@ router.post('/postresult', matchactions.postResult);
 
 //POST /Send Notification
 router.post('/sendnotification',notificationactions.sendNotification);
+
+//POST /Send FeedBack
+router.post('/sendfeedback',feedbackactions.sendFeedback);
 
 //POST /Updating user match information
 router.post('/usermatch', userinfoactions.joinhost);
