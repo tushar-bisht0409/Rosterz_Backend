@@ -38,6 +38,12 @@ router.post('/usermatch', userinfoactions.joinhost);
 //POST /Updating User FCM token
 router.post('/updatefcmtoken',userinfoactions.updateFcmToken);
 
+//POST /Remove Team from Match
+router.post('/removeteam',matchactions.removeTeam);
+
+//POST /Remove User Match
+router.post('/removeusermatch',userinfoactions.removejoinhost);
+
 //GET / Getting User Information
 router.get('/getuser', userinfoactions.getUserInfo);
 

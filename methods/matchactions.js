@@ -328,7 +328,52 @@ getUserMatch: function(req,res){
                     return res.send({success: true, msz: matches}); 
             }}
     });
-}
+},
+removeTeam: function(req,res){
+    var obj = req.body;
+            Match.findOneAndUpdate(  
+                {
+                    matchID: obj.matchID
+                },
+                {
+                    $pull: {"teams": obj.teamName,
+                    "registeredBy": obj.userID},
+                },function(err,teaminfo){
+                        if(err){
+                                return res.send({success: false, msz:"Something Went Wrong"});                  
+                        }
+                        else{  
+                            Team.findOneAndDelete(
+                                {
+                                    teamID: obj.teamID
+                                },
+                                function(err,team){
+                                    if(err){
+                                        Match.findOneAndUpdate(  
+                                            {
+                                                matchID: obj.matchID
+                                            },
+                                            {
+                                                $push: {"teams": obj.teamName,
+                                                "registeredBy": obj.userID},
+                                            },function(err,teaminfo){});
+                                        return res.json({
+                                            success: false,
+                                            msz: "Failed to Remove"
+                                        });
+                                    }
+                                    else{
+                                        return res.json({
+                                            success: true,
+                                            msz: "Removed Successfully"
+                                        });
+                                    }
+                                }
+                            );
+                        }
+                });
+        
+},
     
 }
 

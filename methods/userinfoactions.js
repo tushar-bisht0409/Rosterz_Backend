@@ -134,7 +134,31 @@ var functions = {
                         return res.send({success: true, msz: tokenArr}); 
                 }}
         });
-    }
+    },
+    removejoinhost: function(req,res){
+        var obj = req.body;
+        UserInfo.findOneAndUpdate({
+            userID: obj.userID
+        },
+        {
+            $pull: {"matchJoined": obj.matchID}
+        }
+        , function(err,match){
+            if(err){
+                return res.json({
+                    success: false,
+                    msz: "Failed to Save"
+                });
+            }
+            else{
+                return res.json({
+                    success: true,
+                    msz: "Saved Successfully"
+                });
+            }
+        });
+    
+    },
     
 }
 
