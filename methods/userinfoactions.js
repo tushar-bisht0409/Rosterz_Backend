@@ -8,6 +8,7 @@ var functions = {
             userinfo = new UserInfo({
                 userID: obj.userID,
                 fcmToken: obj.fcmToken,
+                hostStatus: obj.hostStatus
             });
             userinfo.save(function(err, match){
                 if(err){
@@ -159,6 +160,7 @@ var functions = {
         });
     
     },
+    
     
 }
 

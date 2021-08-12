@@ -26,6 +26,10 @@ const userInfoSchema = new Schema({
         type: String,
         require: false
     },
+    hostStatus: {
+        type: String,
+        require: false
+    },
 });
 
 module.exports = mongoose.model("userInfo", userInfoSchema);
