@@ -127,6 +127,7 @@ var functions = {
                         else{  
                             teaminfo = new Team({
                                 teamID: obj.teamID,
+                                userID: obj.userID,
                                 matchID: obj.matchID,
                                 teamName: obj.teamName,
                                 players: [obj.players],

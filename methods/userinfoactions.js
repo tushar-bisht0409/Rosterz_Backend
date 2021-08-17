@@ -8,7 +8,11 @@ var functions = {
             userinfo = new UserInfo({
                 userID: obj.userID,
                 fcmToken: obj.fcmToken,
-                hostStatus: obj.hostStatus
+                hostStatus: obj.hostStatus,
+                inGameName: obj.inGameName,
+                winCount: 0,
+                looseCount: 0,
+                coins: 10,
             });
             userinfo.save(function(err, match){
                 if(err){
@@ -160,8 +164,225 @@ var functions = {
         });
     
     },
-    
-    
+    updateUserInfo: function(req,res){
+        var obj = req.body;
+        if(obj.type === "secondaryGame"){
+        UserInfo.findOneAndUpdate(  
+            {
+                userID: obj.userID
+            },
+            {
+               "secondaryGame": obj.secondaryGame,
+            },function(err,info){
+                if(err){
+                    return res.json({
+                        success: false,
+                        msz: "Failed to Save"
+                    });
+                }
+                else{
+                    return res.json({
+                        success: true,
+                        msz: "Successfully Saved"
+                    });
+                }
+            });}
+            else if(obj.type === "primaryGame"){
+                UserInfo.findOneAndUpdate(  
+                    {
+                        userID: obj.userID
+                    },
+                    {
+                        "primaryGame": obj.primaryGame,
+                    },function(err,info){
+                        if(err){
+                            return res.json({
+                                success: false,
+                                msz: "Failed to Save"
+                            });
+                        }
+                        else{
+                            return res.json({
+                                success: true,
+                                msz: "Successfully Saved"
+                            });
+                        }
+                    });}
+                    else if(obj.type === "facebook"){
+                        UserInfo.findOneAndUpdate(  
+                            {
+                                userID: obj.userID
+                            },
+                            {
+                                "facebook": obj.facebook,
+                            },function(err,info){
+                                if(err){
+                                    return res.json({
+                                        success: false,
+                                        msz: "Failed to Save"
+                                    });
+                                }
+                                else{
+                                    return res.json({
+                                        success: true,
+                                        msz: "Successfully Saved"
+                                    });
+                                }
+                            });}
+                            else if(obj.type === "instagram"){
+                                UserInfo.findOneAndUpdate(  
+                                    {
+                                        userID: obj.userID
+                                    },
+                                    {
+                                        "instagram": obj.instagram,
+                                    },function(err,info){
+                                        if(err){
+                                            return res.json({
+                                                success: false,
+                                                msz: "Failed to Save"
+                                            });
+                                        }
+                                        else{
+                                            return res.json({
+                                                success: true,
+                                                msz: "Successfully Saved"
+                                            });
+                                        }
+                                    });}
+                                    else if(obj.type === "youtube"){
+                                        UserInfo.findOneAndUpdate(  
+                                            {
+                                                userID: obj.userID
+                                            },
+                                            {
+                                                "youtube": obj.youtube,
+                                            },function(err,info){
+                                                if(err){
+                                                    return res.json({
+                                                        success: false,
+                                                        msz: "Failed to Save"
+                                                    });
+                                                }
+                                                else{
+                                                    return res.json({
+                                                        success: true,
+                                                        msz: "Successfully Saved"
+                                                    });
+                                                }
+                                            });}
+                                            else if(obj.type === "loco"){
+                                                UserInfo.findOneAndUpdate(  
+                                                    {
+                                                        userID: obj.userID
+                                                    },
+                                                    {
+                                                        "loco": obj.loco,
+                                                    },function(err,info){
+                                                        if(err){
+                                                            return res.json({
+                                                                success: false,
+                                                                msz: "Failed to Save"
+                                                            });
+                                                        }
+                                                        else{
+                                                            return res.json({
+                                                                success: true,
+                                                                msz: "Successfully Saved"
+                                                            });
+                                                        }
+                                                    });}
+                                                    else if(obj.type === "about"){
+                                                        UserInfo.findOneAndUpdate(  
+                                                            {
+                                                                userID: obj.userID
+                                                            },
+                                                            {
+                                                                "about": obj.about,
+                                                            },function(err,info){
+                                                                if(err){
+                                                                    return res.json({
+                                                                        success: false,
+                                                                        msz: "Failed to Save"
+                                                                    });
+                                                                }
+                                                                else{
+                                                                    return res.json({
+                                                                        success: true,
+                                                                        msz: "Successfully Saved"
+                                                                    });
+                                                                }
+                                                            });}
+                                                            else if(obj.type === "winCount"){
+                                                                    var wCount = parseFloat(obj.winCount);
+                                                                UserInfo.findOneAndUpdate(
+                                                                    {userID: obj.userID},
+                                                                    { $inc: {winCount: wCount}},
+                                                                    function(err,userInfo){
+                                                                        if(err){
+                                                                            return res.json({
+                                                                                success: false,
+                                                                                msz: "Failed to Save",
+                                                                                erre: err
+                                                                            });
+                                                                        }
+                                                                        else{
+                                                                            return res.json({
+                                                                                success: true,
+                                                                                msz: "Saved Successfully",
+                                                                                ii: userInfo
+                                                                            });
+                                                                    }
+                                                                    });
+                                                                    }
+                                                                    else if(obj.type === "star"){
+                                                                        if(obj.starType === "true"){
+                                                                            UserInfo.findOneAndUpdate(  
+                                                                                {
+                                                                                    userID: obj.receiverID
+                                                                                },
+                                                                                {
+                                                                                    $push: {"star": obj.senderID},
+                                                                                },function(err,info){
+                                                                                    if(err){
+                                                                                        return res.json({
+                                                                                            success: false,
+                                                                                            msz: "Failed to Save"
+                                                                                        });
+                                                                                    }
+                                                                                    else{
+                                                                                                    return res.json({
+                                                                                                        success: true,
+                                                                                                        msz: "Successfully Saved"
+                                                                                                    });
+                                                                                    }
+                                                                                });
+                                                                        }
+                                                                        else if(obj.starType === "false"){
+                                                                            UserInfo.findOneAndUpdate(  
+                                                                                {
+                                                                                    userID: obj.receiverID
+                                                                                },
+                                                                                {
+                                                                                    $pull: {"star": obj.senderID},
+                                                                                },function(err,info){
+                                                                                    if(err){
+                                                                                        return res.json({
+                                                                                            success: false,
+                                                                                            msz: "Failed to Save"
+                                                                                        });
+                                                                                    }
+                                                                                    else{
+                                                                                                    return res.json({
+                                                                                                        success: true,
+                                                                                                        msz: "Successfully Saved"
+                                                                                                    });
+                                                                                    }
+                                                                                });
+                                                                        }
+                                                                        
+                                                                        }
+    }
 }
 
 module.exports = functions;

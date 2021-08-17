@@ -6,6 +6,7 @@ const feedbackactions = require("../methods/feedbackactions")
 //const payactions = require("../methods/payactions");
 const userinfoactions = require("../methods/userinfoactions");
 const notificationactions = require("../methods/notificationactions");
+const coinactions = require("../methods/coinactions");
 const router = express.Router();
 
 // POST / Adding New User
@@ -16,6 +17,9 @@ router.post('/authenticate', actions.authenticate);
 
 //POST / Post User Information
 router.post('/saveuser', userinfoactions.postUserInfo);
+
+// POST / Update User Info
+router.post('/updateinfo', userinfoactions.updateUserInfo);
 
 //POST / Host Match
 router.post('/hostmatch', matchactions.postMatch);
@@ -43,6 +47,9 @@ router.post('/removeteam',matchactions.removeTeam);
 
 //POST /Remove User Match
 router.post('/removeusermatch',userinfoactions.removejoinhost);
+
+//POST /Update User Coins
+router.post('/updatecoins', coinactions.updateCoins);
 
 //GET / Getting User Information
 router.get('/getuser', userinfoactions.getUserInfo);
