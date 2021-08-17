@@ -177,6 +177,7 @@ var functions = {
                                     matchID: obj.matchID,
                                     teamName: obj.teamName,
                                     players: [obj.players],
+                                    playersID: [obj.userID],
                                     gPay: obj.gPay
                                 });
                                 teaminfo.save(function(err, team){
@@ -221,7 +222,8 @@ var functions = {
                                     teamID: obj.teamID
                                 },
                                 {
-                                    $push: {"players": obj.players}
+                                    $push: {"players": obj.players,
+                                "playersID": obj.userID}
                                 },
                                 function(err,teaminfo){
                                     if(err){
