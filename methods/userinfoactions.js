@@ -172,7 +172,7 @@ var functions = {
                 userID: obj.userID
             },
             {
-               "secondaryGame": obj.secondaryGame,
+               "secondaryGame": obj.newinfo,
             },function(err,info){
                 if(err){
                     return res.json({
@@ -193,7 +193,7 @@ var functions = {
                         userID: obj.userID
                     },
                     {
-                        "primaryGame": obj.primaryGame,
+                        "primaryGame": obj.newinfo,
                     },function(err,info){
                         if(err){
                             return res.json({
@@ -214,7 +214,7 @@ var functions = {
                                 userID: obj.userID
                             },
                             {
-                                "facebook": obj.facebook,
+                                "facebook": obj.newinfo,
                             },function(err,info){
                                 if(err){
                                     return res.json({
@@ -235,7 +235,7 @@ var functions = {
                                         userID: obj.userID
                                     },
                                     {
-                                        "instagram": obj.instagram,
+                                        "instagram": obj.newinfo,
                                     },function(err,info){
                                         if(err){
                                             return res.json({
@@ -256,7 +256,7 @@ var functions = {
                                                 userID: obj.userID
                                             },
                                             {
-                                                "youtube": obj.youtube,
+                                                "youtube": obj.newinfo,
                                             },function(err,info){
                                                 if(err){
                                                     return res.json({
@@ -277,7 +277,7 @@ var functions = {
                                                         userID: obj.userID
                                                     },
                                                     {
-                                                        "loco": obj.loco,
+                                                        "loco": obj.newinfo,
                                                     },function(err,info){
                                                         if(err){
                                                             return res.json({
@@ -298,7 +298,7 @@ var functions = {
                                                                 userID: obj.userID
                                                             },
                                                             {
-                                                                "about": obj.about,
+                                                                "about": obj.newinfo,
                                                             },function(err,info){
                                                                 if(err){
                                                                     return res.json({
@@ -314,7 +314,7 @@ var functions = {
                                                                 }
                                                             });}
                                                             else if(obj.type === "winCount"){
-                                                                    var wCount = parseFloat(obj.winCount);
+                                                                    var wCount = parseFloat(obj.newinfo);
                                                                 UserInfo.findOneAndUpdate(
                                                                     {userID: obj.userID},
                                                                     { $inc: {winCount: wCount}},
