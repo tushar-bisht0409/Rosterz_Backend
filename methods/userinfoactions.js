@@ -9,10 +9,18 @@ var functions = {
                 userID: obj.userID,
                 fcmToken: obj.fcmToken,
                 hostStatus: obj.hostStatus,
-                inGameName: obj.inGameName,
+                inGameName: "Player",
                 winCount: 0,
                 looseCount: 0,
                 coins: 10,
+                primaryGame: "",
+                secondaryGame:"",
+                facebook: "https://www.facebook.com/154453846746738",
+                instagram: "https://instagram.com/rosterz_kt?utm_medium=copy_link",
+                youtube: "https://youtube.com/channel/UCMrRpEE3yGmQOdr-IMV6NJg",
+                hostStatus: "player",
+                about: "",
+
             });
             userinfo.save(function(err, match){
                 if(err){
