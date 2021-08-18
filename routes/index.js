@@ -30,6 +30,9 @@ router.post('/registerteam', matchactions.postTeam);
 //POST / Post Result
 router.post('/postresult', matchactions.postResult);
 
+//POST / Close Match
+router.post('/closematch', matchactions.closeMatch);
+
 //POST /Send Notification
 router.post('/sendnotification',notificationactions.sendNotification);
 

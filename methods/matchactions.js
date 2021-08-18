@@ -377,6 +377,27 @@ removeTeam: function(req,res){
                 });
         
 },
+closeMatch: function(req,res){
+    var obj = req.body;
+    Match.findOneAndUpdate({
+        matchID: obj.matchID},
+        {status: "closed"}
+    , function(err,matches){
+        if(err){
+            return res.send({success: false, msz: err}); 
+        }
+           else if(!matches){
+                return res.send({success: false, msz:"No Match Found"});                  
+            }
+            else{
+                if(matches.length === 0){
+                    return res.send({success: false, msz:"No Match Found"});
+                }
+                else{
+                    return res.send({success: true, msz: "Successfully Saved"}); 
+            }}
+    });
+}
     
 }
 
