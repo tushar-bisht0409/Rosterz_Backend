@@ -22,7 +22,8 @@ var functions = {
                 status: "open",
                 matchLink: obj.matchLink,
                 entryFee: obj.entryFee,
-                poolPrize: obj.poolPrize
+                poolPrize: obj.poolPrize,
+                playerCount: 0,
             });
             matchinfo.save(function(err, match){
                 if(err){
@@ -178,7 +179,8 @@ var functions = {
                                     teamName: obj.teamName,
                                     players: [obj.players],
                                     playersID: [obj.userID],
-                                    gPay: obj.gPay
+                                    gPay: obj.gPay,
+                                    userID: obj.userID
                                 });
                                 teaminfo.save(function(err, team){
                                     if(err){
@@ -196,6 +198,11 @@ var functions = {
                                         });
                                     }
                                     else{
+                                        Match.findOneAndUpdate(
+                                            {matchID: obj.matchID},
+                                            { $inc: {playerCount: 1}},
+                                            function(err,mm){
+                                            });
                                         return res.json({
                                             success: true,
                                             msz: "Registered Successfully"
@@ -240,6 +247,11 @@ var functions = {
                                         });
                                     }
                                     else{
+                                        Match.findOneAndUpdate(
+                                            {matchID: obj.matchID},
+                                            { $inc: {playerCount: 1}},
+                                            function(err,mm){
+                                            });
                                         return res.json({
                                             success: true,
                                             msz: "Registered Successfully"

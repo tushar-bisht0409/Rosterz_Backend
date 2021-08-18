@@ -70,6 +70,10 @@ const matchSchema = new Schema({
         type: String,
         require: false
     },
+    playerCount: {
+        type: Number,
+        require: false
+    },
 });
 
 module.exports = mongoose.model("matches", matchSchema);
