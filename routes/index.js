@@ -7,6 +7,7 @@ const feedbackactions = require("../methods/feedbackactions")
 const userinfoactions = require("../methods/userinfoactions");
 const notificationactions = require("../methods/notificationactions");
 const coinactions = require("../methods/coinactions");
+const cpaleadactions = require("../methods/cpaleadactions");
 const router = express.Router();
 
 // POST / Adding New User
@@ -77,6 +78,9 @@ router.get('/getmatch', matchactions.getMatch);
 
 //GET / Get Teams
 router.get('/getteam', matchactions.getTeam);
+
+//GET / Get CPA Lead Information
+router.get('/postback/conversion', cpaleadactions.updateLead);
 
 
 module.exports = router;
