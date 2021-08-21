@@ -6,9 +6,19 @@ var functions = {
     updateLead: function(req,res){
         var obj = req.query;
         var lead = new Cpalead({
-            GAID: obj.gaid,
+            campaign_id: obj.campaign_id,
             payout: obj.payout,
-            campaignID: obj.campaignID,
+            campaign_name: obj.campaign_name,
+            subid: obj.subid,
+            subid2: obj.subid2,
+            subid3: obj.subid3,
+            ip_address: obj.ip_address,
+            gateway_id: obj.gateway_id,
+            lead_id: obj.lead_id,
+            country_iso: obj.country_iso,
+            password: obj.password,
+            virtual_currency: obj.virtual_currency,
+            timeStamp: Date.now().toString
         });
         lead.save(function(err, leadInfo){
             if(err){
@@ -26,5 +36,7 @@ var functions = {
         });
     }
 }
+
+
 
 module.exports = functions;
