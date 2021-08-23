@@ -7,7 +7,7 @@ const feedbackactions = require("../methods/feedbackactions")
 const userinfoactions = require("../methods/userinfoactions");
 const notificationactions = require("../methods/notificationactions");
 const coinactions = require("../methods/coinactions");
-const cpaleadactions = require("../methods/cpaleadactions");
+const postbackactions = require("../methods/postbackactions");
 const router = express.Router();
 
 // POST / Adding New User
@@ -79,8 +79,14 @@ router.get('/getmatch', matchactions.getMatch);
 //GET / Get Teams
 router.get('/getteam', matchactions.getTeam);
 
-//GET / Get CPA Lead Information
-router.get('/postback/conversion', cpaleadactions.updateLead);
+//GET / Get CPA Lead Postback
+router.get('/postback/cpalead', postbackactions.cpaLead);
+
+//GET / Get Offer Daddy Postback
+router.get('/postback/offerdaddy', postbackactions.offerDaddy);
+
+//GET / Get Wannads Postback
+router.get('/postback/wannads', postbackactions.wannads);
 
 
 module.exports = router;
