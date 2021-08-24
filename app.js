@@ -18,7 +18,7 @@ app.use(passport.initialize());
 require("./config/passport")(passport);
 
 app.get("/", function (req, res) {
-    res.sendFile(__dirname + "/index.html");
+    res.sendFile(__dirname + "/hhh.html");
 })
 
 let port = process.env.PORT;
