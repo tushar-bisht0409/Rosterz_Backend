@@ -16,6 +16,7 @@ app.use(express.urlencoded());
 app.use(routes);
 app.use(passport.initialize());
 require("./config/passport")(passport);
+app.use(express.static('public'));
 
 app.get("/", function (req, res) {
     res.sendFile(__dirname + "/hhh.html");
