@@ -20,7 +20,7 @@ app.use(express.static('public'));
 
 app.get("/", function (req, res) {
     res.sendFile(__dirname + "/h2.html");
-})
+});
 
 let port = process.env.PORT;
 if (port == null || port == "") {
