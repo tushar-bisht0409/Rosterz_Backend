@@ -19,7 +19,15 @@ require("./config/passport")(passport);
 app.use(express.static('public'));
 
 app.get("/", function (req, res) {
+    res.sendFile(__dirname + "/h1.html");
+});
+
+app.get("/page2", function (req, res) {
     res.sendFile(__dirname + "/h2.html");
+});
+
+app.get("/page3", function (req, res) {
+    res.sendFile(__dirname + "/h3.html");
 });
 
 let port = process.env.PORT;
