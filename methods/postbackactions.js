@@ -1,7 +1,8 @@
 
 const Cpalead = require("../models/cpalead");
 const OfferDaddy = require("../models/offerdaddy");
-const Wannads = require("../models/wannads");
+const Tapjoy = require("../models/tapjoy");
+const UserInfo = require("../models/userinfo");
 const mongoose = require("mongoose");
 
 var functions = {
@@ -66,34 +67,31 @@ var functions = {
             }
         });
     },
-    wannads: function(req,res){
+    tapjoy: function(req,res){
         var obj = req.query;
-        var postback = new Wannads({
-            campaign_id: obj.campaign_id,
-            payout: obj.payout,
-            campaign_name: obj.campaign_name,
-            subid: obj.subid,
-            subid2: obj.subid2,
-            uuid: obj.subid3,
-            reward: obj.reward,
-            status: obj.status,
-            virtual_currency: obj.virtual_currency,
-            timeStamp: Date.now().toString
+        var postback = new Tapjoy({
+            userID: obj.snuid,
+            coins: obj.currency,
         });
-        postback.save(function(err, postbackInfo){
-            if(err){
-                return res.json({
-                    success: false,
-                    msz: "Failed to Save"
-                });
+        postback.save(function(err, postbackInfo){});
+        var newCoins = parseFloat(obj.currency);
+        UserInfo.findOneAndUpdate(
+            {userID: obj.snuid},
+            { $inc: {coins: newCoins}},
+            function(err,userInfo){
+                if(err){
+                    return res.json({
+                        success: false,
+                        msz: "Failed to Save",
+                    });
+                }
+                else{
+                    return res.json({
+                        success: true,
+                        msz: "Saved Successfully",
+                    });
             }
-            else{
-                return res.json({
-                    success: true,
-                    msz: "Successfully Saved"
-                });
-            }
-        });
+            });
     },
 }
 

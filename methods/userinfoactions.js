@@ -1,10 +1,11 @@
 
 const UserInfo = require("../models/userinfo");
+const Statistic =  require("../models/statistic");
 const mongoose = require("mongoose");
 
 var functions = {
     postUserInfo: function(req,res){
-        var obj = req.body
+        var obj = req.body;
             userinfo = new UserInfo({
                 userID: obj.userID,
                 fcmToken: obj.fcmToken,
@@ -20,7 +21,9 @@ var functions = {
                 youtube: "https://youtube.com/channel/UCMrRpEE3yGmQOdr-IMV6NJg",
                 hostStatus: "player",
                 about: "",
-
+            });
+            statsinfo = new Statistic({
+                userID: obj.userID,
             });
             userinfo.save(function(err, match){
                 if(err){
@@ -30,9 +33,19 @@ var functions = {
                     });
                 }
                 else{
-                    return res.json({
-                        success: true,
-                        msz: "Successfully Saved"
+                    statsinfo.save(function(err, stats){
+                        if(err){
+                            return res.json({
+                                success: false,
+                                msz: "Failed to Save"
+                            });
+                        }
+                        else{
+                            return res.json({
+                                success: true,
+                                msz: "Successfully Saved"
+                            });
+                        }
                     });
                 }
             });
@@ -390,6 +403,31 @@ var functions = {
                                                                         }
                                                                         
                                                                         }
+    },
+    updateStats: function(req,res){
+        var obj =  req.body;
+        UserInfo.findOneAndUpdate(  
+            {
+                userID: obj.userID
+            },
+            {
+                $push: {"matchJoined": obj.newstat,
+                
+            },
+            },function(err,info){
+                if(err){
+                    return res.json({
+                        success: false,
+                        msz: "Failed to Save"
+                    });
+                }
+                else{
+                    return res.json({
+                        success: true,
+                        msz: "Successfully Saved"
+                    });
+                }
+            });
     }
 }
 

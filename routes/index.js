@@ -85,8 +85,8 @@ router.get('/postback/cpalead', postbackactions.cpaLead);
 //GET / Get Offer Daddy Postback
 router.get('/postback/offerdaddy', postbackactions.offerDaddy);
 
-//GET / Get Wannads Postback
-router.get('/postback/wannads', postbackactions.wannads);
+//GET / Get TapJoy Postback
+router.get('/callback/tapjoy', postbackactions.tapjoy);
 
 
 module.exports = router;
