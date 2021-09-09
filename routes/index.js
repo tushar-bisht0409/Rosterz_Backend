@@ -88,5 +88,8 @@ router.get('/postback/offerdaddy', postbackactions.offerDaddy);
 //GET / Get TapJoy Postback
 router.get('/callback/tapjoy', postbackactions.tapjoy);
 
+//GET / Get Affiliate Interactive Postback
+router.get('/postback/affinteractive', postbackactions.affinteractive);
+
 
 module.exports = router;
