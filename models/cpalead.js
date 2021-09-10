@@ -55,6 +55,9 @@ const cpalead = new Schema({
         require: false
     },
 
+},
+{
+    timestamps: true,
 });
 
 module.exports = mongoose.model("CPALEAD", cpalead);

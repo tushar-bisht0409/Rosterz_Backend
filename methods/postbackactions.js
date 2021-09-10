@@ -2,7 +2,6 @@
 const Cpalead = require("../models/cpalead");
 const Affinteractive = require("../models/affinteractive");
 const Tapjoy = require("../models/tapjoy");
-const Tapjoy = require("../models/tapjoy");
 const UserInfo = require("../models/userinfo");
 const mongoose = require("mongoose");
 

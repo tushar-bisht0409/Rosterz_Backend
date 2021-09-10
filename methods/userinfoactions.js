@@ -1,7 +1,8 @@
 
 const UserInfo = require("../models/userinfo");
-const Statistic =  require("../models/statistic");
+const Statistic =  require("../models/playerstatistic");
 const mongoose = require("mongoose");
+const Subscription = require("../models/subscription");
 
 var functions = {
     postUserInfo: function(req,res){
@@ -158,7 +159,7 @@ var functions = {
                             tokenArr.push(userinfo[i]['fcmToken']);
                         }
                         return res.send({success: true, msz: tokenArr}); 
-                }}
+                } }
         });
     },
     removejoinhost: function(req,res){
@@ -428,7 +429,54 @@ var functions = {
                     });
                 }
             });
-    }
+    },
+    subscription: function(req,res){
+        var obj = req.body;
+            subinfo = new Subscription({
+                userID: obj.userID,
+            });
+            subinfo.save(function(err, subs){
+                if(err){
+                    return res.json({
+                        success: false,
+                        msz: "Failed to Save"
+                    });
+                }
+                else{
+                    Subscription.inde
+                            return res.json({
+                                success: true,
+                                msz: "Successfully Saved"
+                            });
+                
+                }
+            });
+        
+    },
+    updateMatchStats: function(req,res){
+        var obj = req.body;
+        Statistic.findOneAndUpdate({
+        userID: obj.userID
+    },
+    {
+        $push: {"matchResult": obj.statistics}
+    },
+    function(err,uinfo){
+        if(err){
+            return res.json({
+                success: false,
+                msz: "Failed to Save"
+            });
+        }
+        else{
+            return res.json({
+                success: true,
+                msz: "Successfully Saved"
+            });
+        }
+    });
+}
+    
 }
 
 module.exports = functions;

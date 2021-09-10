@@ -7,6 +7,7 @@ const feedbackactions = require("../methods/feedbackactions")
 const userinfoactions = require("../methods/userinfoactions");
 const notificationactions = require("../methods/notificationactions");
 const coinactions = require("../methods/coinactions");
+const teamactions = require("../methods/teamactions");
 const postbackactions = require("../methods/postbackactions");
 const router = express.Router();
 
@@ -22,11 +23,21 @@ router.post('/saveuser', userinfoactions.postUserInfo);
 // POST / Update User Info
 router.post('/updateinfo', userinfoactions.updateUserInfo);
 
+//POST / Update Player Statistics
+router.post('/updateplayerstats', userinfoactions.updateMatchStats);
+
+
 //POST / Host Match
 router.post('/hostmatch', matchactions.postMatch);
 
 //POST / Register Team
-router.post('/registerteam', matchactions.postTeam);
+// router.post('/registerteam', matchactions.postTeam);  //OLD 
+
+//POST / Team Actions
+router.post('/teamactions', teamactions.teamActions);
+
+//POST / Update Team Statistics
+router.post('/updateteamstats', teamactions.updateStats);
 
 //POST / Post Result
 router.post('/postresult', matchactions.postResult);
@@ -55,6 +66,9 @@ router.post('/removeusermatch',userinfoactions.removejoinhost);
 //POST /Update User Coins
 router.post('/updatecoins', coinactions.updateCoins);
 
+//POST /Subscribing User
+router.post('/subscription63981710120409', userinfoactions.subscription);
+
 //GET / Getting User Information
 router.get('/getuser', userinfoactions.getUserInfo);
 
@@ -77,7 +91,10 @@ router.get('/getusermatch', matchactions.getUserMatch);
 router.get('/getmatch', matchactions.getMatch);
 
 //GET / Get Teams
-router.get('/getteam', matchactions.getTeam);
+// router.get('/getteam', matchactions.getTeam);  //OLD
+
+//GET / Get Teams
+router.get('/getteam', teamactions.getTeam);
 
 //GET / Get CPA Lead Postback
 router.get('/postback/cpalead', postbackactions.cpaLead);

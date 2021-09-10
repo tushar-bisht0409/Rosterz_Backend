@@ -55,6 +55,9 @@ const offerdaddy = new Schema({
         require: false
     },
 
+},
+{
+    timestamps: true,
 });
 
 module.exports = mongoose.model("offerdaddy", offerdaddy);

@@ -12,7 +12,12 @@ const statisticSchema = new Schema({
         position: String,
         mode: String,
         kill: String,
+        org: String,
+        league: String,
     }],
+},
+{
+    timestamps: true,
 });
 
 module.exports = mongoose.model("Statistics", statisticSchema);
