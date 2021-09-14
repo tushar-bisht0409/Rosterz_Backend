@@ -22,6 +22,10 @@ const adgatemediaSchema = new Schema({
         type: String,
         require: false
     },
+    payout: {
+        type: String,
+        require: false
+    },
 },
 {
     timestamps: true,

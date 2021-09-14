@@ -131,11 +131,12 @@ var functions = {
     adgatemedia: function(req,res){
         var obj = req.query;
         var postback = new AdGateMedia({
-            userID: obj.s1,
-            coins: obj.points,
-            offer_id: obj.offer_id,
-            offer_name: obj.offer_name,
-            status: obj.status,
+            userID: obj.user_id,
+            coins: obj.point_value,
+            offer_id: obj.offer_title,
+            transaction_id: obj.tx_id,
+            payout: obj.usd_value,
+            status: obj.status
         });
         postback.save(function(err, postbackInfo){});
         if(obj.status === "1"){
