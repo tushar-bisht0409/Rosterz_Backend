@@ -21,7 +21,6 @@ var functions = {
             country_iso: obj.country_iso,
             password: obj.password,
             virtual_currency: obj.virtual_currency,
-            timeStamp: Date.now().toString
         });
         postback.save(function(err, postbackInfo){
             if(err){
@@ -50,7 +49,6 @@ var functions = {
             subid2: obj.subid2,
             subid3: obj.subid3,
             virtual_currency: obj.virtual_currency,
-            timeStamp: Date.now().toString
         });
         postback.save(function(err, postbackInfo){
             if(err){

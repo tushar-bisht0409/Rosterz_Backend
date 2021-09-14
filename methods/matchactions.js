@@ -1,6 +1,6 @@
 
 const Match = require("../models/match");
-const Team = require("../models/team");
+const Team = require("../models/teamOld");
 const Result = require("../models/result");
 const mongoose = require("mongoose");
 

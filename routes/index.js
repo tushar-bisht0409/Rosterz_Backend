@@ -2,12 +2,13 @@
 const express = require("express");
 const actions = require("../methods/actions");
 const matchactions =  require("../methods/matchactions");
-const feedbackactions = require("../methods/feedbackactions")
+const feedbackactions = require("../methods/feedbackactions");
 //const payactions = require("../methods/payactions");
 const userinfoactions = require("../methods/userinfoactions");
 const notificationactions = require("../methods/notificationactions");
 const coinactions = require("../methods/coinactions");
 const teamactions = require("../methods/teamactions");
+const tournamentactions = require("../methods/tournamentactions");
 const postbackactions = require("../methods/postbackactions");
 const router = express.Router();
 
@@ -26,9 +27,17 @@ router.post('/updateinfo', userinfoactions.updateUserInfo);
 //POST / Update Player Statistics
 router.post('/updateplayerstats', userinfoactions.updateMatchStats);
 
-
 //POST / Host Match
 router.post('/hostmatch', matchactions.postMatch);
+
+//POST / Create Tournament
+router.post('/createtournament', tournamentactions.createTorunament);
+
+//POST / Register Team for Tournament
+router.post('/registertournament', tournamentactions.teamAction);
+
+//POST / Create Round's Result for Tournament
+router.post('/createroundresult', tournamentactions.createRoundResult);
 
 //POST / Register Team
 // router.post('/registerteam', matchactions.postTeam);  //OLD 
@@ -95,6 +104,9 @@ router.get('/getmatch', matchactions.getMatch);
 
 //GET / Get Teams
 router.get('/getteam', teamactions.getTeam);
+
+//GET / Get Tournaments
+router.get('/gettournament', tournamentactions.getTournament);
 
 //GET / Get CPA Lead Postback
 router.get('/postback/cpalead', postbackactions.cpaLead);

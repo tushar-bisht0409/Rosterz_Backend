@@ -3,6 +3,7 @@ const UserInfo = require("../models/userinfo");
 const Statistic =  require("../models/playerstatistic");
 const mongoose = require("mongoose");
 const Subscription = require("../models/subscription");
+const PLB = require("../models/playerleaderboard");
 
 var functions = {
     postUserInfo: function(req,res){
@@ -14,7 +15,7 @@ var functions = {
                 inGameName: "Player",
                 winCount: 0,
                 looseCount: 0,
-                coins: 10,
+                coins: 0,
                 primaryGame: "",
                 secondaryGame:"",
                 facebook: "https://www.facebook.com/154453846746738",
