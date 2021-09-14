@@ -2,6 +2,7 @@
 const Cpalead = require("../models/cpalead");
 const Affinteractive = require("../models/affinteractive");
 const Tapjoy = require("../models/tapjoy");
+const AdGateMedia = require("../models/adgatemedia");
 const UserInfo = require("../models/userinfo");
 const mongoose = require("mongoose");
 
@@ -111,6 +112,42 @@ var functions = {
         }
         UserInfo.findOneAndUpdate(
             {userID: obj.sid},
+            { $inc: {coins: newCoins}},
+            function(err,userInfo){
+                if(err){
+                    return res.json({
+                        success: false,
+                        msz: "Failed to Save",
+                    });
+                }
+                else{
+                    return res.json({
+                        success: true,
+                        msz: "Saved Successfully",
+                    });
+            }
+            });
+    },
+    adgatemedia: function(req,res){
+        var obj = req.query;
+        var postback = new AdGateMedia({
+            userID: obj.s1,
+            coins: obj.points,
+            offer_id: obj.offer_id,
+            offer_name: obj.offer_name,
+            status: obj.status,
+        });
+        postback.save(function(err, postbackInfo){});
+        if(obj.status === "1"){
+            var newCoins = parseFloat(obj.points);
+        }
+        else if(obj.status === "0"){
+            var newCoins = -parseFloat(obj.points);
+        }
+        
+        
+        UserInfo.findOneAndUpdate(
+            {userID: obj.s1},
             { $inc: {coins: newCoins}},
             function(err,userInfo){
                 if(err){

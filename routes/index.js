@@ -120,5 +120,9 @@ router.get('/callback/tapjoy', postbackactions.tapjoy);
 //GET / Get Affiliate Interactive Postback
 router.get('/postback/affinteractive', postbackactions.affinteractive);
 
+//GET / Get Affiliate Interactive Postback
+router.get('/postback/adgatemedia', postbackactions.adgatemedia);
+
+
 
 module.exports = router;
