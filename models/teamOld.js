@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const teamSchema = new Schema({
+const teamOldSchema = new Schema({
     teamID: {
         type: String,
         require: false
@@ -28,4 +28,4 @@ const teamSchema = new Schema({
     }],
 });
 
-module.exports = mongoose.model("teams", teamSchema);
+module.exports = mongoose.model("teamOlds", teamOldSchema);
