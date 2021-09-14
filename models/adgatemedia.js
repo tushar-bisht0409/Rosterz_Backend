@@ -18,7 +18,7 @@ const adgatemediaSchema = new Schema({
         type: String,
         require: false
     },
-    offer_name: {
+    transaction_id: {
         type: String,
         require: false
     },
