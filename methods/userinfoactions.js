@@ -403,6 +403,8 @@ var functions = {
                                                                                     }
                                                                                 });
                                                                         }
+                                                                        
+                                                                        }
                                                                         else if(obj.type === "team"){
                                                                             if(obj.teamAction === "add"){
                                                                                 UserInfo.findOneAndUpdate(  
@@ -426,7 +428,7 @@ var functions = {
                                                                                         }
                                                                                     });
                                                                             }
-                                                                            else if(obj.starType === "remove"){
+                                                                            else if(obj.teamAction === "remove"){
                                                                                 UserInfo.findOneAndUpdate(  
                                                                                     {
                                                                                         userID: obj.userID
@@ -448,8 +450,6 @@ var functions = {
                                                                                         }
                                                                                     });
                                                                             }}
-                                                                        
-                                                                        }
     },
     updateStats: function(req,res){
         var obj =  req.body;

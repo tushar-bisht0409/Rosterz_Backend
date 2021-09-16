@@ -12,6 +12,7 @@ var functions = {
                 teamID: tid,
                 teamName: obj.teamName,
                 playersID: [obj.userID],
+                playerName: [obj.playerName],
                 game: obj.game,
             });
             statsinfo = new TeamStatistics({
@@ -48,7 +49,8 @@ var functions = {
                     teamID: obj.teamID
                 },
                 {
-                    $push: {"playersID": obj.userID}
+                    $push: {"playersID": obj.userID,
+                "playersName": obj.playerName}
                 },
                 function(err,tinfo){
                     if(err){
@@ -72,7 +74,8 @@ var functions = {
                     teamID: obj.teamID
                 },
                 {
-                    $pull: {"playersID": obj.userID}
+                    $pull: {"playersID": obj.userID,
+                    "playersName": obj.playerName}
                 },
                 function(err,tinfo){
                     if(err){
@@ -96,7 +99,8 @@ var functions = {
                     teamID: obj.teamID
                 },
                 {
-                    $pull: {"playersID": obj.removeID}
+                    $pull: {"playersID": obj.removeID,
+                    "playersName": obj.playerName}
                 },
                 function(err,tinfo){
                     if(err){

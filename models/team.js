@@ -14,6 +14,10 @@ const teamSchema = new Schema({
         type: String,
         require: false,
     }],
+    playersName: [{
+        type: String,
+        require: false,
+    }],
     game: {
         type: String,
         require: false

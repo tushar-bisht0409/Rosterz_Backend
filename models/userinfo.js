@@ -34,6 +34,7 @@ const userInfoSchema = new Schema({
         game: String,
         teamID: String,
         teamName: String,
+        inGameName: String,
     }],
     gPay: {
         type: String,
