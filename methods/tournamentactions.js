@@ -1,21 +1,22 @@
 const Tournament = require('../models/tournament');
 const RoundResult = require('../models/roundresult');
 const mongoose = require("mongoose");
+const {v1: uuidv1} = require("uuid");
 
 var functions = {
     createTorunament: function(req,res){
         var obj = req.body;
         tourInfo = new Tournament({
-            tournamentID: obj.tournamentID,
+            tournamentID: uuidv1(),
             organizer: obj.organizer,
             userID: obj.userID,
             description: obj.description,
             maxPlayers: obj.maxPlayers,
-            minPlayers: obj.minPlayers,
             totalSlots: obj.totalSlots,
             startDate: obj.startDate,
             endDate: obj.endDate,
             game: obj.game,
+            logoID: obj.logoID,
             tournamentLink: obj.tournamentLink,
             entryFee: obj.entryFee,
             prize: obj.prize,

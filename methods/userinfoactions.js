@@ -403,6 +403,51 @@ var functions = {
                                                                                     }
                                                                                 });
                                                                         }
+                                                                        else if(obj.type === "team"){
+                                                                            if(obj.teamAction === "add"){
+                                                                                UserInfo.findOneAndUpdate(  
+                                                                                    {
+                                                                                        userID: obj.userID
+                                                                                    },
+                                                                                    {
+                                                                                        $push: {"teams": obj.team},
+                                                                                    },function(err,info){
+                                                                                        if(err){
+                                                                                            return res.json({
+                                                                                                success: false,
+                                                                                                msz: "Failed to Save"
+                                                                                            });
+                                                                                        }
+                                                                                        else{
+                                                                                                        return res.json({
+                                                                                                            success: true,
+                                                                                                            msz: "Successfully Saved"
+                                                                                                        });
+                                                                                        }
+                                                                                    });
+                                                                            }
+                                                                            else if(obj.starType === "remove"){
+                                                                                UserInfo.findOneAndUpdate(  
+                                                                                    {
+                                                                                        userID: obj.userID
+                                                                                    },
+                                                                                    {
+                                                                                        $pull: {"teams": obj.team},
+                                                                                    },function(err,info){
+                                                                                        if(err){
+                                                                                            return res.json({
+                                                                                                success: false,
+                                                                                                msz: "Failed to Save"
+                                                                                            });
+                                                                                        }
+                                                                                        else{
+                                                                                                        return res.json({
+                                                                                                            success: true,
+                                                                                                            msz: "Successfully Saved"
+                                                                                                        });
+                                                                                        }
+                                                                                    });
+                                                                            }}
                                                                         
                                                                         }
     },

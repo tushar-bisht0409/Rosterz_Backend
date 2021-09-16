@@ -54,12 +54,28 @@ const tournamentSchema = new Schema({
         type: String,
         require: false
     },
+    logoID: {
+        type: String,
+        require: false
+    },
     status: {
         type: String,
         require: false,
         default: "open"
     },
-    tournamentLink: {
+    youtube: {
+        type: String,
+        require: false
+    },
+    discord: {
+        type: String,
+        require: false
+    },
+    instagram: {
+        type: String,
+        require: false
+    },
+    facebook: {
         type: String,
         require: false
     },

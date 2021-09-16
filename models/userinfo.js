@@ -18,9 +18,22 @@ const userInfoSchema = new Schema({
         type: String,
         require: false,
     }],
+    tournamentJoined: [{
+        type: String,
+        require: false,
+    }],
+    tournamentHosted: [{
+        type: String,
+        require: false,
+    }],
     allGames: [{
         type: String,
         require: false,
+    }],
+    teams: [{
+        game: String,
+        teamID: String,
+        teamName: String,
     }],
     gPay: {
         type: String,
