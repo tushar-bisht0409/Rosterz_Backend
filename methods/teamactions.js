@@ -99,7 +99,7 @@ var functions = {
                     teamID: obj.teamID
                 },
                 {
-                    $pull: {"playersID": obj.removeID,
+                    $pull: {"playersID": obj.userID,
                     "playersName": obj.playerName}
                 },
                 function(err,tinfo){
