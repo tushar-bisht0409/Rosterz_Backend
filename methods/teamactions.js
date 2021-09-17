@@ -122,7 +122,8 @@ var functions = {
     getTeam: function(req,res){
         var obj = req.query;
     Team.find({
-        playersID: obj.userID
+        playersID: obj.userID,
+        game: obj.game
     }, function(err,tinfo){
         if(err){
             return res.send({success: false, msz:"No Team Found"});                  
