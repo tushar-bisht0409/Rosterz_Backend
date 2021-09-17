@@ -1,5 +1,6 @@
 const Team = require("../models/team");
 const TeamStatistics = require("../models/teamstatistics");
+const UserInfo = require("../models/userinfo");
 const mongoose = require("mongoose");
 const {v1: uuidv1} = require("uuid");
 
@@ -26,6 +27,19 @@ var functions = {
                     });
                 }
                 else{
+                    var teamObj = {
+                        "game": obj.game,
+                        "teamID": tid,
+                        "teamName": obj.teamName,
+                        "inGameName": obj.playerName,
+                    };
+                    UserInfo.findOneAndUpdate(  
+                        {
+                            userID: obj.userID
+                        },
+                        {
+                            $push: {"teams": teamObj},
+                        },function(err,info){});
                     statsinfo.save(function(err, sinfo){
                         if(err){
                             return res.json({
@@ -53,31 +67,19 @@ var functions = {
                 "playersName": obj.playerName}
                 },
                 function(err,tinfo){
-                    if(err){
-                        return res.json({
-                            success: false,
-                            msz: "Failed to Save"
-                        });
-                    }
-                    else{
-                        return res.json({
-                            success: true,
-                            msz: "Successfully Saved"
-                        });
-                    }
-                }
-            );
-        }
-        else if(obj.type == "quit"){
-            Team.findOneAndUpdate(
-                {
-                    teamID: obj.teamID
-                },
-                {
-                    $pull: {"playersID": obj.userID,
-                    "playersName": obj.playerName}
-                },
-                function(err,tinfo){
+                    var teamObj = {
+                        "game": obj.game,
+                        "teamID": obj.teamID,
+                        "teamName": obj.teamName,
+                        "inGameName": obj.playerName,
+                    };
+                    UserInfo.findOneAndUpdate(  
+                        {
+                            userID: obj.userID
+                        },
+                        {
+                            $push: {"teams": teamObj},
+                        },function(err,info){});
                     if(err){
                         return res.json({
                             success: false,
@@ -103,6 +105,19 @@ var functions = {
                     "playersName": obj.playerName}
                 },
                 function(err,tinfo){
+                    var teamObj = {
+                        "game": obj.game,
+                        "teamID": obj.teamID,
+                        "teamName": obj.teamName,
+                        "inGameName": obj.playerName,
+                    };
+                    UserInfo.findOneAndUpdate(  
+                        {
+                            userID: obj.userID
+                        },
+                        {
+                            $pull: {"teams": teamObj},
+                        },function(err,info){});
                     if(err){
                         return res.json({
                             success: false,
