@@ -29,6 +29,9 @@ app.get("/page2", function (req, res) {
 app.get("/page3", function (req, res) {
     res.sendFile(__dirname + "/h3.html");
 });
+app.get("/privacypolicy", function (req, res) {
+    res.sendFile(__dirname + "/h_policy.html");
+});
 
 let port = process.env.PORT;
 if (port == null || port == "") {
