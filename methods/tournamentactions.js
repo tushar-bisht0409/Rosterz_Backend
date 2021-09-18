@@ -94,7 +94,7 @@ var functions = {
     teamAction: function(req,res){
         var obj = req.body;
         if(obj.type === "create"){
-            Tournament.findAndUpdate(
+            Tournament.findOneAndUpdate(
                 {
                     tournamentID: obj.tournamentID
                 },
@@ -121,7 +121,7 @@ var functions = {
     });
 }
 else if(obj.type === "join"){
-    Tournament.findAndUpdate(
+    Tournament.findOneAndUpdate(
         {
             tournamentID: obj.tournamentID
         },
@@ -146,7 +146,7 @@ else {
 });
 }
 else if(obj.type === "remove"){
-    Tournament.findAndUpdate(
+    Tournament.findOneAndUpdate(
         {
             tournamentID: obj.tournamentID
         },
@@ -154,6 +154,7 @@ else if(obj.type === "remove"){
             $pull: {
                 "teams": obj.team,
                 "teamIDs": obj.teamID,
+                "userIDs": obj.userID,
             }
         },
         function(err,tinfo){

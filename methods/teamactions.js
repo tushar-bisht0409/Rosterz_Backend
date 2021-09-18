@@ -13,7 +13,7 @@ var functions = {
                 teamID: tid,
                 teamName: obj.teamName,
                 playersID: [obj.userID],
-                playerName: [obj.playerName],
+                playersName: [obj.playerName],
                 game: obj.game,
             });
             statsinfo = new TeamStatistics({
