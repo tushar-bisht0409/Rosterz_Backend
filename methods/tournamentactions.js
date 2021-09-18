@@ -90,6 +90,23 @@ var functions = {
                 }}
         });
     }
+    else if(obj.getBy === "userID"){
+        Tournament.find({
+            userIDs: obj.userID
+        }, function(err,tours){
+            if(err) throw err;
+                if(!tours){
+                    return res.send({success: false, msz:"No Tournament Found"});                  
+                }
+                else{
+                    if(tours.length === 0){
+                        return res.send({success: false, msz:"No Tournament Found"});
+                    }
+                    else{
+                        return res.send({success: true, msz: tours}); 
+                }}
+        });
+    }
     },
     teamAction: function(req,res){
         var obj = req.body;
