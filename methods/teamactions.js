@@ -137,8 +137,12 @@ var functions = {
     getTeam: function(req,res){
         var obj = req.query;
     Team.find({
-        playersID: obj.userID,
+       "$or": [{ playersID: obj.userID,
+        game: obj.game},
+    {
+        teamID: obj.teamID,
         game: obj.game
+    }]
     }, function(err,tinfo){
         if(err){
             return res.send({success: false, msz:"No Team Found"});                  
