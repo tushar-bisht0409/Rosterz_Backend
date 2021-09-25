@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const roundResultSchema = new Schema({
+const roundSchema = new Schema({
     roundName: {
         type: String,
         require: false
@@ -10,17 +10,26 @@ const roundResultSchema = new Schema({
         type: String,
         require: false
     },
+    allGroups: [{
+        type: String,
+        require: false,
+    }],
+    groupTeams: [{
+        groupName: String,
+        teamID: String,
+        teamName: String,
+    }],
+    teamIDs: [{
+        type: String,
+        require: false,
+    }],
     game: {
         type: String,
         require: false
     },
-    teamsQualified: [{
-        teamID: String,
-        teamName: String,
-    }],
 },
 {
     timestamps: true,
 });
 
-module.exports = mongoose.model("roundresults", roundResultSchema);
+module.exports = mongoose.model("rounds", roundSchema);

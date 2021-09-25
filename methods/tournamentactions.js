@@ -1,5 +1,5 @@
 const Tournament = require('../models/tournament');
-const RoundResult = require('../models/roundresult');
+const Round = require('../models/round');
 const mongoose = require("mongoose");
 const {v1: uuidv1} = require("uuid");
 
@@ -190,15 +190,14 @@ else {
 });
 }
 },
-createRoundResult: function(req,res){
+createRound: function(req,res){
     var obj = req.body;
-    roundInfo = new RoundResult({
+    roundInfo = new Round({
+        roundName: obj.roundName,
         tournamentID: obj.tournamentID,
-        round: obj.round,
-        group: obj.group,
-        teamResult: obj.teamResult,
-        game: obj.game,
-        description: obj.description,
+        allGroups: obj.allGroups,
+        groupTeams: obj.groupTeams,
+        game: obj.game
     });
     roundInfo.save(function(err, round){
         if(err){
@@ -211,11 +210,30 @@ createRoundResult: function(req,res){
             return res.json({
                 success: true,
                 msz: "Successfully Saved",
-                rou: round
+                tour: round
             });
         }
     });
 },
+getRound: function(req,res){
+    var obj = req.query;
+    Round.find({
+        tournamentID: obj.tournamentID,
+        roundName: obj.roundName, 
+    }, function(err,rounds){
+        if(err) throw err;
+            if(!rounds){
+                return res.send({success: false, msz:"No Tournament Rounds Found"});                  
+            }
+            else{
+                if(rounds.length === 0){
+                    return res.send({success: false, msz:"No Tournament Rounds Found"});
+                }
+                else{
+                    return res.send({success: true, msz: rounds}); 
+            }}
+    });
+}
 }
 
 module.exports = functions;

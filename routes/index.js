@@ -9,6 +9,7 @@ const notificationactions = require("../methods/notificationactions");
 const coinactions = require("../methods/coinactions");
 const teamactions = require("../methods/teamactions");
 const tournamentactions = require("../methods/tournamentactions");
+const resultactions = require("../methods/resultactions");
 const postbackactions = require("../methods/postbackactions");
 const router = express.Router();
 
@@ -36,8 +37,14 @@ router.post('/createtournament', tournamentactions.createTorunament);
 //POST / Register Team for Tournament
 router.post('/registertournament', tournamentactions.teamAction);
 
+//POST / Create Rounds for Tournament
+router.post('/createtournamentround', tournamentactions.createRound);
+
 //POST / Create Round's Result for Tournament
-router.post('/createroundresult', tournamentactions.createRoundResult);
+router.post('/createtournamentroundresult', resultactions.createRoundResult);
+
+//POST / Create Round's Group Result for Tournament
+router.post('/createtournamentgroupresult', resultactions.createGroupResult);
 
 //POST / Register Team
 // router.post('/registerteam', matchactions.postTeam);  //OLD 

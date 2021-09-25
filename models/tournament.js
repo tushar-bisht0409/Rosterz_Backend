@@ -50,6 +50,10 @@ const tournamentSchema = new Schema({
         type: String,
         require: false,
     }],
+    rounds: [{
+        type: String,
+        require: false,
+    }],
     game: {
         type: String,
         require: false
